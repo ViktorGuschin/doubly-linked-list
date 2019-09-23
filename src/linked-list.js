@@ -3,31 +3,31 @@ const Node = require('./node');
 class Linked_list {
   constructor() {
     this.length = 0;
-    this._head = null;
-    this._tail = null;
+    this._head = new Node();
+    this._tail = new Node();
     this._list = [];
   }
 
   append(data) {
-    if (this._head === null && this._tail === null) {
+    if (this._head.data === null) {
+      this._list.push(data);
       this._head = new Node(data);
       this._tail = new Node(data);
-      this.length++;
+    } else {
       this._list.push(data);
-      return this;
+      this._tail = new Node(data);
     }
-    this._tail = new Node(data);
     this.length++;
-    this._list.push(data);
+
     return this;
   }
 
   head() {
-    return this._head !== null ? this._head.data : null;
+    return this._head.data;
   }
 
   tail() {
-    return this._tail !== null ? this._tail.data : null;
+    return this._tail.data;
   }
 
   at(index) {
@@ -44,8 +44,8 @@ class Linked_list {
   }
 
   clear() {
-    this._head = null;
-    this._tail = null;
+    this._head = new Node();
+    this._tail = new Node();
     this.length = 0;
     this._list = [];
     return this;
@@ -70,3 +70,8 @@ class Linked_list {
 }
 
 module.exports = Linked_list;
+
+// const list = new Linked_list();
+
+// list.append(123);
+// list.append(413);
